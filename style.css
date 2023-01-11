@@ -1,0 +1,45 @@
+table {
+    border-collapse: collapse;
+    margin: 0px auto;
+}
+table th, table td {
+    border: solid 0.1px black;
+    padding: 5px;
+    font-size: 20px;
+}
+table tr>td {
+    border: solid 0.1px black;
+    padding: 5px;
+    margin: 0px;
+}
+tr:nth-child(even){background-color: #f2f2f2;}
+tr:hover {background-color: #ddd;}
+h2 {
+    margin: auto;
+    text-align: center;
+    font-size: 30px;
+}
+form {
+    width: 40%;
+    margin:20px auto;
+    border: solid 0.5px black;
+    padding: 20px;
+}
+form button {
+    margin: 10px  auto;
+    color: white;
+    font-weight: bold;
+    background-color: black;
+    font-size: 20px;
+    padding:10px 20px;
+    border-radius: 5px;
+}
+form input {
+    width: 100%;
+    border: solid 0.2px gray;
+    border-radius: 5px;
+}
+.wbtn {
+    width: 100%;
+    text-align: right;
+}

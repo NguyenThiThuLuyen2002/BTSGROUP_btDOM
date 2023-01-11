@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <h2>JavasCript CRUD Example tutorial</h2>
+    <form action="">
+        <p>Full Name</p>
+        <input type="text" id="fullname">
+        <p>Email Id</p>
+        <input type="text" id="id">
+        <p>Salary</p>
+        <input type="text" id="salary">
+        <p>City</p>
+        <input type="text" id="city">
+        <div class="wbtn"><button id="btnsubmit">Submit</button></div>
+    </form>
+    
+    <table id="render">
+        <tr>
+            <th>Full Name</th>
+            <th>Email Id</th>
+            <th>Salary</th>
+            <th>City</th>
+            <th>Actions</th>
+        </tr>
+    </table>
+</body>
+<script>
+    const fullname=document.getElementById('fullname');
+    const id=document.getElementById('id');
+    const salary=document.getElementById('salary');
+    const city=document.getElementById('city');
+    const render=document.getElementById('render');
+    const btnsubmit=document.getElementById('btnsubmit');
+
+    
+
+    let arr=[
+        {   fullname:"Ramesh",
+            id:"Fadatare",
+            salary:1000,
+            city:"Pune"
+        },
+        {
+            fullname:"John",
+            id:"john@gmail.com",
+            salary:5000,
+            city:"London"
+        }
+        ]
+    //show table 
+    function showtable (){
+        arr.forEach((item) => {
+            render.innerHTML=render.innerHTML +`
+            <tr class="ouput"> 
+                <td>${item.fullname}</td>
+                <td>${item.id}</td>
+                <td>${item.salary}</td>
+                <td>${item.city}</td>
+                <td>
+                    <button onclick="EditItem(${item})">edit</button>
+                    <button onclick="DeleteItem(${item})">delete</button>
+                </td>
+            </tr>`
+        })  ;  
+    }
+    showtable(arr);
+    
+    function showselectedrow(x){
+        document.getElementById('fullname').value=x.fullname;
+        document.getElementById('id').value=x.id;
+        document.getElementById('salary').value=x.salary;
+        document.getElementById('city').value=x.city;
+        }
+
+    function Savechange(x) {
+        //render.innerHTML=""
+        arr.forEach((item) => {
+            if (item.id== x.id){
+                item.fullname=fullname.innerHTML;
+                item.id=id.innerHTML;
+                item.salary=salary.innerHTML;
+                item.city=city.innerHTML;
+            }
+            render.innerHTML=render.innerHTML +`
+            <tr class="ouput"> 
+                <td>${item.fullname}</td>
+                <td>${item.id}</td>
+                <td>${item.salary}</td>
+                <td>${item.city}</td>
+                <td>
+                    <button onclick="EditItem(${item})">edit</button>
+                    <button onclick="DeleteItem(${item})">delete</button>
+                </td>
+            </tr>`
+        })
+    }
+    function DeleteItem(item) {
+        arr=arr.filter( (i) => i !==i)
+        //render.innerHTML=""
+        arr.forEach((item) => {
+            render.innerHTML=render.innerHTML +`
+            <tr class="ouput"> 
+                <td>${item.fullname}</td>
+                <td>${item.id}</td>
+                <td>${item.salary}</td>
+                <td>${item.city}</td>
+                <td>
+                    <button onclick="EditItem(${item})">edit</button>
+                    <button onclick="DeleteItem(${item})">delete</button>
+                </td>
+            </tr>`
+        })
+    }
+    btnsubmit.addEventListener('click',()=>{
+        let fullnameInputValue=fullname.value;
+        let idInputValue=id.value;
+        let salaryInputValue=salary.value;
+        let cityInputValue=city.value;
+        let obj = {
+            fullname:fullnameInputValue,
+            id:idInputValue,
+            salary: salaryInputValue,
+            city:cityInputValue
+        }
+        arr.push(obj)
+        // render.innerHTML=""
+        arr.forEach((item) => {
+            render.innerHTML=render.innerHTML +`
+            <tr class="ouput"> 
+                <td>${item.fullname}</td>
+                <td>${item.id}</td>
+                <td>${item.salary}</td>
+                <td>${item.city}</td>
+                <td>
+                    <button onclick="showselectedrow(${item})">edit</button>
+                    <button onclick="DeleteItem(${item})">delete</button>
+                </td>
+            </tr>`
+        })
+    })
+</script>
+</html>
